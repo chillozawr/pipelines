@@ -1,15 +1,12 @@
-
-name: pipelinesDocker
-on:
-  push:
-    branches:
-      - main
+name: ActionsPipelines
+on: workflow_dispatch
 jobs:
-  pipelines:
+  logs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Docker compose up
-      run: docker compose up -d
-    - name: Docker logs
-      run: docker compose logs -f -t
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Run Docker
+        run: docker-compose up -d
+      - name: Print logs
+        run: docker-compose logs pipelines
