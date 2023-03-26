@@ -6,14 +6,19 @@ services:
     build: ./db/
     ports:
       - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready --username=postgres -p 5432" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     container_name: db
   pipelines:
     build: .
     container_name: pipelines-zhidkov
     command: python pipeline.py --host 0.0.0.0 --port 5432
-#    depends_on:
-#      db:
-#        condition: service_healthy
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - .:/pipelines/
     ports:
