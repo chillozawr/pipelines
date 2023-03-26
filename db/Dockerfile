@@ -1,0 +1,9 @@
+FROM postgres:15
+WORKDIR /db
+
+ENV POSTGRES_PASSWORD=Ng1w6foxgr
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_DB=pipelines
+ENV POSTGRES_HOST=db
+
+COPY . .
