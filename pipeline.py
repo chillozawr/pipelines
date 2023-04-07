@@ -6,7 +6,7 @@ VERSION = '2023'
 
 
 TASKS = [
-    tasks.LoadFile(input_file='example_pipeline/original/original.csv', table='original'),
+    tasks.LoadFile(input_file='example_pipeline/original/original.csv', table='original', cols=['name', 'url']),
     tasks.CTAS(
         table='norm',
         sql_query='''
